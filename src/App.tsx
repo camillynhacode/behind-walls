@@ -12,6 +12,7 @@ import React from 'react';
 import {
   useColorScheme,
 } from 'react-native';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 import Navigator from './router';
 
@@ -19,7 +20,9 @@ import Navigator from './router';
 
 const App = () => {
   return (
-    <Navigator />
+    <AuthContextProvider>
+      <Navigator />
+    </AuthContextProvider>
   );
 };
 

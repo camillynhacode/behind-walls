@@ -4,7 +4,7 @@ import { Form } from "../../components/Login/Form";
 import styles from "./styles";
 
 
-const Login = () => {
+const Login = ({ navigation }: any) => {
     return (
         <View style={styles.container}>
             <View style={styles.viewLogo}>
@@ -13,7 +13,7 @@ const Login = () => {
                     style={styles.logo}
                 />
             </View>
-            <Form />
+            <Form navigation={navigation}/>
         </View>
     );
 }
