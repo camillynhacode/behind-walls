@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000000',
+    backgroundColor: COLORS.screens.screenBackground,
     fontSize: 28,
   },
   input: {
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     borderColor: COLORS.secondaryColor,
     paddingLeft: 10,
+    backgroundColor: COLORS.screens.screenBackground
   },
   button: {
     backgroundColor: COLORS.secondaryColor,

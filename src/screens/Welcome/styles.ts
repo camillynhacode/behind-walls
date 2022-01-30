@@ -18,11 +18,14 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       marginTop: 20
   },
+  viewImage: {
+      alignItems: 'center'
+  },
   textDescription: {
     fontSize: 19,
       textAlign: 'center',
       marginTop: 30,
-      opacity: 0.8
+      opacity: 0.8,
   },
   viewButton: {
     justifyContent: 'flex-end',

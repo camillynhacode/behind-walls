@@ -30,7 +30,7 @@ export const Form = (props: FormProps) => {
           <Text style={styles.title}>Vamos começar?</Text>
           <TextInput
             style={styles.input}
-            placeholder="Usuário"
+            placeholder="E-mail"
             placeholderTextColor={COLORS.secondaryColor}
             onChangeText={handleChange('email')}
             onBlur={handleBlur('email')}
