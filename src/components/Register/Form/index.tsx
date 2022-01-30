@@ -5,17 +5,37 @@ import { Formik } from 'formik';
 import styles from './styles';
 import COLORS from '../../../styles/colors';
 import { useAuth } from '../../../contexts/AuthContext';
+import api from '../../../services/api';
 
 interface FormProps {
     navigation: any
 }
 export const Form = (props: FormProps) => {
     const UseAuth = useAuth();
+    const register: any = async (data: any) => {
+        const username = data && data.email ? data.email.split('@')[0] : '';
+        const first_name = data && data.nome ? data.nome.split(' ')[0] : '';
+        const last_name = data && data.nome ? data.nome.split(' ')[1] || '' : '';
+        let work = false
+        await api.post('usuarios/', {...data, username, first_name, last_name}).then(response => {
+            work = true
+        }).catch((error) => {
+            console.log('error: ', error);
+            
+            work = false
+        })  
+        console.log({...data, username, first_name, last_name});
+
+        return work
+    }
+
     return (
         <Formik
             initialValues={{ email: '', password: '', nome: '', username: '', rg: '', contato: '', cep: '', zona: '', bairro: '', rua: '' }}
             onSubmit={ async (values) => {
-                console.log(values)
+                const registrado = await register(values)
+                console.log(registrado);
+
             }}
         >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
