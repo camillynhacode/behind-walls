@@ -15,11 +15,16 @@ export const Form = (props: FormProps) => {
         <Formik
             initialValues={{ email: '', password: '' }}
             onSubmit={ async (values) => {
-                //const logado = await UseAuth.login(values)
-                //if(logado){
-                //    return props.navigation.navigate('Home')
-                //}
-                props.navigation.navigate('Home')
+                const logado = await UseAuth.login(values)
+                
+                if(logado){
+                    return props.navigation.navigate('Home')
+                }
+                else{
+                    props.navigation.navigate('Login', {
+                        error: true
+                    })
+                }
             }}
         >
             {({ handleChange, handleBlur, handleSubmit, values }) => (

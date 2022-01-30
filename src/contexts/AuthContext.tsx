@@ -9,7 +9,7 @@ interface AuthContextProviderProps {
 interface AuthStateProps {
     accessToken: string | null;
     refreshToken: string | null;
-    authenticated: boolean | null;
+    authenticated: boolean;
 }
 
 interface LoginProps {
@@ -25,7 +25,7 @@ interface AuthContextData {
 }
 
 interface ParamsProps {
-    username: string;
+    email: string;
     password: string;
 }
 
@@ -34,24 +34,25 @@ export function AuthContextProvider({children}: AuthContextProviderProps){
   const [authState, setAuthState] = useState<AuthStateProps>({
     accessToken: null,
     refreshToken: null,
-    authenticated: null,
+    authenticated: false,
   });
 
   const login = async (props: LoginProps) => {
-      const params: ParamsProps = {username: props.email, password: props.password}
-      const response = await api.post('token/', params)
+      const params: ParamsProps = {email: props.email, password: props.password}
+      let logado = false;
+      await api.post('token/', params).then(response => {
+        const token = response.data.access
+        const refresh = response.data.refresh
+        setAuthState({
+          accessToken: token,
+          refreshToken: refresh,
+          authenticated: true,
+        });
+        logado = true
+      }).catch(error => console.log(error))
 
-      const token = response.data.access
-      const refresh = response.data.refresh
-      if(response.status!=200){
-          return false
-      }
-      setAuthState({
-        accessToken: token,
-        refreshToken: refresh,
-        authenticated: true,
-      });
-      return true
+      console.log('o user está logado :', logado)
+      return logado
   }
 
   const logout = async () => {
