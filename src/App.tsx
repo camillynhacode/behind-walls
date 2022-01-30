@@ -9,9 +9,6 @@
  */
 
 import React from 'react';
-import {
-  useColorScheme,
-} from 'react-native';
 import { AuthContextProvider } from './contexts/AuthContext';
 
 import Navigator from './router';
