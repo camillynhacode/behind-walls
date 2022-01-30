@@ -10,7 +10,7 @@ const Register = ({route, navigation}: any) => {
     UseAuth.logout();
   }, []);
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.viewLogo}>
         <Image source={require('../../assets/images/logo2.png')} />
         <Text style={styles.textLogo}>Olá, bem-vinda!</Text>
@@ -18,7 +18,7 @@ const Register = ({route, navigation}: any) => {
       <ScrollView>
         <Form navigation={navigation} />
       </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
 
